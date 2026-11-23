@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Playground.Core/Playground.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Playground.Core.Tests/Playground.Core.Tests.csproj" />
+  </Folder>
+</Solution>
