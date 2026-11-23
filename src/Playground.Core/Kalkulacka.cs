@@ -2,5 +2,5 @@
 
 public static class Kalkulacka
 {
-    public static int Secti(int a, int b) => a + b;
+    public static int Secti(int a, int b) => a - b;
 }
