@@ -1,6 +1,9 @@
 name: CI
 
-on: [push, pull_request]
+on:
+    push:
+        branches: [master]
+    pull_request:
 
 jobs:
     build-and-test:
@@ -13,3 +16,19 @@ jobs:
             - run: dotnet restore
             - run: dotnet build --no-restore
             - run: dotnet test --no-build
+
+    holdout:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+              with:
+                  path: hook-playground
+            - uses: actions/checkout@v7
+              with:
+                  repository: ${{ github.repository_owner }}/hook-playground-holdout
+                  token: ${{ secrets.HOLDOUT_TOKEN }}
+                  path: hook-playground-holdout
+            - uses: actions/setup-dotnet@v6
+              with:
+                  dotnet-version: "10.0.x"
+            - run: dotnet test hook-playground-holdout/Holdout.Tests.csproj
